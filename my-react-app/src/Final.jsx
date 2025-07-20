@@ -179,7 +179,7 @@ export default  fucntion NFTCard()  {
       </div>
     </div>
   </div>
-)
+);
 
 
 
