@@ -51,7 +51,7 @@ const NFTCard = () => {
       // Create background rect behind collectible text
       const rect = doc.createElementNS("http://www.w3.org/2000/svg", "rect");
       rect.setAttribute("x", "-80"); // shift left to cover text width approx
-      rect.setAttribute("y", "-14"); // shift up to center vertically approx
+      rect.setAttribute("y", "-22"); // shift up to center vertically approx
       rect.setAttribute("width", "160"); // width to cover text width
       rect.setAttribute("height", "28"); // height to cover text height
       rect.setAttribute("fill", "rgba(96, 85, 99, 0.2")// Tailwind gray-600 hex color
@@ -61,7 +61,7 @@ const NFTCard = () => {
       // Create collectible text itself
       const collectibleText = doc.createElementNS("http://www.w3.org/2000/svg", "text");
       collectibleText.setAttribute("x", "0");
-      collectibleText.setAttribute("y", "0");
+      collectibleText.setAttribute("y", "-7");
       collectibleText.setAttribute("font-size", "16");
       collectibleText.setAttribute("font-weight", "400");
       collectibleText.setAttribute("text-anchor", "middle");
