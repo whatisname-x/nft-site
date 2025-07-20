@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
 
-const NFTCard = () => {
+export default  fucntion NFTCard()  {
   const [previewContent, setPreviewContent] = useState(null);
   const [fields, setFields] = useState([]);
   const [error, setError] = useState(null);
@@ -123,78 +123,63 @@ const NFTCard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 flex justify-center items-center p-4 font-sans text-white">
-      <div className="bg-gray-800 max-w-lg w-full rounded-2xl p-8 shadow-lg text-center relative overflow-hidden">
-        <div className="mb-6 flex flex-col items-center">
-          {loading && !error && (
-            <div className="text-red-400 text-lg font-semibold">Loading...</div>
-          )}
-          {error && <div className="text-red-500 text-lg font-semibold">{error}</div>}
-          {!loading && !error && previewContent && (
-            <>
-              <div className="relative flex flex-col w-full max-w-md h-52 rounded-lg overflow-hidden bg-gray-700 mx-auto mb-4 flex justify-center items-center">
-                <div
-                  className="w-min-full h-min-full"
-                  dangerouslySetInnerHTML={{ __html: previewContent.bgDiv }}
-                />
-                {previewContent.tgsUrl && (
-                  <div className="absolute top-1/2 left-1/2 w-32 h-32 rounded-lg z-10 pointer-events-none -translate-x-1/2 -translate-y-1/2 flex justify-center items-center overflow-hidden">
-                    <tgs-player
-                      src={previewContent.tgsUrl}
-                      autoplay
-                      loop
-                      className="w-full h-full rounded-lg object-contain"
-                    />
-                  </div>
-                )}
-                <p className="text-5xl"></p>
-              </div>
-            </>
-          )}
+  <div className="min-h-screen bg-black flex justify-center items-center p-4 font-sans text-white">
+    <div className="bg-[#1e1e1e] max-w-md w-full rounded-3xl overflow-hidden shadow-xl text-center relative">
+      {/* Top gradient image (parsed SVG) */}
+      <div className="bg-gradient-to-br from-[#9166f2] to-[#a670e7] p-6">
+        <div className="flex justify-center items-center">
+          <div
+            className="w-[140px] h-[140px]"
+            dangerouslySetInnerHTML={{ __html: previewContent?.bgDiv || "" }}
+          />
         </div>
+        <h2 className="mt-4 text-white text-xl font-bold">Bonded Ring</h2>
+        <p className="text-purple-200 text-sm">Collectible #{/* you can extract number here */}</p>
+      </div>
 
-        <div className="flex gap-4 justify-center flex-wrap mb-6">
-          <a
-            href={telegramHref}
-            target="_blank"
-            rel="noreferrer"
-            className="bg-gray-700 hover:bg-gray-600 transition px-5 py-3 rounded-xl font-semibold min-w-[120px]"
-          >
-            In Telegram
-          </a>
-          <a
-            href={shareHref}
-            target="_blank"
-            rel="noreferrer"
-            className="bg-gray-700 hover:bg-gray-600 transition px-5 py-3 rounded-xl font-semibold min-w-[120px]"
-          >
-            Share
-          </a>
-        </div>
-
+      {/* Info fields */}
+      <div className="bg-[#111111] px-6 py-6 text-left">
         {!loading && !error && (
-          <div className="bg-gray-900 rounded-xl p-5 text-left">
-            {fields.map(({ label, value }) => (
-              <div key={label} className="flex flex-col justify-between mb-4 text-base">
-                <div className="text-gray-400 min-w-[80px]">{label}</div>
-                <p className="text-blue-600">{value}</p>
-              </div>
-            ))}
-          </div>
+          <>
+            {/* Owner */}
+            <div className="mb-4">
+              <p className="text-gray-400 text-sm">Owner</p>
+              <p className="text-white break-all text-sm font-mono">
+                {fields.find(f => f.label === "Owner")?.value || "—"}
+              </p>
+            </div>
+
+            {/* Render other fields */}
+            {fields.map(({ label, value }) =>
+              label !== "Owner" ? (
+                <div key={label} className="mb-4">
+                  <p className="text-gray-400 text-sm">{label}</p>
+                  <p className="text-blue-400 text-sm">{value}</p>
+                </div>
+              ) : null
+            )}
+          </>
         )}
 
-        <button
-          onClick={() => navigate('/intro' + searchParams)}
-          className="mt-6 w-full bg-red-600 hover:bg-red-500 transition rounded-xl py-3 font-bold text-white"
-        >
-          Get a Gift
-        </button>
+        {/* Error / Loading state */}
+        {loading && <div className="text-red-400 font-semibold text-center">Loading...</div>}
+        {error && <div className="text-red-500 font-semibold text-center">{error}</div>}
+      </div>
 
-              
+      {/* Action button */}
+      <div className="bg-[#1e1e1e] px-6 pb-6">
+        <a
+          href={telegramHref}
+          target="_blank"
+          rel="noreferrer"
+          className="block w-full text-center bg-[#3390ec] hover:bg-[#2f7fd0] transition py-3 rounded-xl font-semibold"
+        >
+          View in Telegram
+        </a>
       </div>
     </div>
-  );
-};
+  </div>
+)
 
-export default NFTCard;
+
 
