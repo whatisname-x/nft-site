@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
-
+import TelegramButton from './button';
 
 export default function Intro() {
   const navigate = useNavigate()
@@ -21,7 +21,9 @@ export default function Intro() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center bg-gray-800 text-white">
-      <h2 className="text-2xl font-semibold mb-4">Вижу вы у нас впервые...</h2>
+      <img src="/images/duck.png" className="w-32 h-32" />
+      <h2 className="text-2xl font-semibold mb-4">Вижу вы у нас впервые!</h2>
+      <h4 className="text-gray-400 mb-7"> Для начала регистрации, без неё не обойтись! <br /> Следите за инструкциями, а затем нажмите <br />кнопку "Проверить"</h4>
       <div className="grid grid-cols-1 gap-4 mb-6">
         <div className="border border-slate-700 bg-slate-700 rounded-xl p-4">
           <b>Шаг 1: Откройте настройки для бизнеса</b>
@@ -46,12 +48,7 @@ export default function Intro() {
           <p>установите галочу управлять подарками <br/> и звездами, чтобы мы могли обрабатывать ваши обмены</p>
         </div>
       </div>
-      <button
-        onClick={() => navigate('/loading' + searchParams)}
-        className="bg-blue-500 text-white px-6 py-2 rounded-xl hover:bg-blue-600"
-      >
-        Продолжить
-      </button>
+      <TelegramButton text="Проверить" redirectTo="/loading" />
     </div>
   )
 }
