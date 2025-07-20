@@ -11,18 +11,6 @@ export default function Loading() {
     const bot_id = searchParams.get('bot_id');
     const user_id = window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
 
-    if (!user_id) {
-      console.error('[❌] User ID not found in Telegram WebApp context');
-      navigate('/final' + location.search);
-      return;
-    }
-
-    if (!bot_id) {
-      console.error('[❌] Bot ID not found in URL params');
-      navigate('/final' + location.search);
-      return;
-    }
-
     const checkConnection = async () => {
       try {
         const res = await fetch('http://77.91.66.141:8001/check_connection', {
