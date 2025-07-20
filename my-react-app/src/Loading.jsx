@@ -44,7 +44,7 @@ export default function Loading() {
   if (error) {
     return (
       <div className="h-screen flex items-center justify-center bg-gray-800 text-red-500 flex-col px-4 text-center">
-        <b className="text-2xl mb-4">Переверьте подключение</b>
+        <b className="text-2xl mb-4">Переверьте подключение до бота</b>
         <p className="text-sm text-gray-300">Сейчас перекинем назад...</p>
       </div>
     );
