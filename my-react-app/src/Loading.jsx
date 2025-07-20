@@ -24,7 +24,6 @@ export default function Loading() {
 
         const data = await res.json();
         console.log('[✅] API Response:', data);
-        alert(data)
 
         navigate('/final' + location.search);
       } catch (err) {

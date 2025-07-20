@@ -1,30 +1,96 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { useNavigate } from 'react-router-dom'
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-export default  function NFTCard()  {
+const NFTCard = () => {
   const [previewContent, setPreviewContent] = useState(null);
   const [fields, setFields] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [showModal, setShowModal] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const location = useLocation();
 
-
-
-  // Cache data to avoid re-fetch on re-render if URL params unchanged
-  const [cache, setCache] = useState({});
-  const searchParams = location.search;
-
-  const params = new URLSearchParams(window.location.search);
+  // Extract collectible ID from gift URL (for SVG text only)
+  const params = new URLSearchParams(location.search);
   const giftUrl = params.get("gift");
   const botUsername = params.get("bot");
 
-  const telegramHref = giftUrl || "#";
-  const shareHref = giftUrl
-    ? `tg://msg_url?text=Check out this gift!&url=${giftUrl}`
-    : "#";
+  let collectibleId = "";
+  if (giftUrl) {
+    const match = giftUrl.match(/EternalRose-(\d+)/);
+    if (match) collectibleId = match[1];
+  }
+
+  function removeTextFromSvgAndInsertCustom(svgString) {
+    try {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(svgString, "image/svg+xml");
+
+      // Remove all <text> elements
+      const textElements = doc.getElementsByTagName("text");
+      for (let i = textElements.length - 1; i >= 0; i--) {
+        const el = textElements[i];
+        el.parentNode?.removeChild(el);
+      }
+
+      // Create new "Eternal Rose" text
+      const eternalText = doc.createElementNS("http://www.w3.org/2000/svg", "text");
+      eternalText.setAttribute("x", "210");
+      eternalText.setAttribute("y", "235"); // mt-5 effect
+      eternalText.setAttribute("font-size", "23");
+      eternalText.setAttribute("font-weight", "500");
+      eternalText.setAttribute("text-anchor", "middle");
+      eternalText.setAttribute("dominant-baseline", "middle");
+      eternalText.setAttribute("fill", "#fff");
+      eternalText.textContent = "Eternal Rose";
+
+      // Create a <g> group for collectible text + background
+      const collectibleGroup = doc.createElementNS("http://www.w3.org/2000/svg", "g");
+      collectibleGroup.setAttribute("transform", "translate(210, 260)"); // Position group
+
+      // Create background rect behind collectible text
+      const rect = doc.createElementNS("http://www.w3.org/2000/svg", "rect");
+      rect.setAttribute("x", "-80"); // shift left to cover text width approx
+      rect.setAttribute("y", "-14"); // shift up to center vertically approx
+      rect.setAttribute("width", "160"); // width to cover text width
+      rect.setAttribute("height", "28"); // height to cover text height
+      rect.setAttribute("fill", "rgba(96, 85, 99, 0.2")// Tailwind gray-600 hex color
+      rect.setAttribute("rx", "16"); // rounded corners
+      rect.setAttribute("ry", "16");
+
+      // Create collectible text itself
+      const collectibleText = doc.createElementNS("http://www.w3.org/2000/svg", "text");
+      collectibleText.setAttribute("x", "0");
+      collectibleText.setAttribute("y", "0");
+      collectibleText.setAttribute("font-size", "16");
+      collectibleText.setAttribute("font-weight", "400");
+      collectibleText.setAttribute("text-anchor", "middle");
+      collectibleText.setAttribute("dominant-baseline", "middle");
+      collectibleText.setAttribute("fill", "#fff");
+      eternalText.setAttribute("y", "225");
+
+      // Collectible text stays as is
+      collectibleGroup.setAttribute("transform", "translate(210, 260)");
+      collectibleText.textContent = `Collectible #${collectibleId}`;
+
+      // Append rect and text into the group
+      collectibleGroup.appendChild(rect);
+      collectibleGroup.appendChild(collectibleText);
+
+      // Append everything to svg root <g> or <svg>
+      const svgRoot = doc.querySelector("svg > g") || doc.querySelector("svg");
+      svgRoot.appendChild(eternalText);
+      svgRoot.appendChild(collectibleGroup);
+
+      return new XMLSerializer().serializeToString(doc);
+    } catch (e) {
+      console.error("SVG parsing failed:", e);
+      return svgString;
+    }
+  }
+
+  // Cache fetched data to avoid repeated fetches
+  const [cache, setCache] = useState({});
 
   const loadNFT = useCallback(
     async (retryCount = 0, maxRetries = 3) => {
@@ -41,7 +107,6 @@ export default  function NFTCard()  {
         return;
       }
 
-      // Return cached if we already got data for this URL
       if (cache[giftUrl]) {
         setPreviewContent(cache[giftUrl].previewContent);
         setFields(cache[giftUrl].fields);
@@ -72,13 +137,16 @@ export default  function NFTCard()  {
 
         const previewContentNew = { bgDiv, tgsUrl };
 
-        const attrs = { Model: "Model", Backdrop: "Backdrop", Symbol: "Symbol" };
+        // Parse all fields except Owner
+        const attrs = { Model: "Model", Backdrop: "Backdrop", Symbol: "Symbol"};
         const cells = [...doc.querySelectorAll("td, th")];
         const out = [];
 
         for (let eng in attrs) {
           const cell = cells.find((c) => c.textContent.trim().startsWith(eng));
-          const valRaw = cell?.nextElementSibling?.innerHTML.trim() || "—";
+          let valRaw = cell?.nextElementSibling?.innerHTML.trim() || "—";
+
+          valRaw = valRaw.replace(/&nbsp;/g, " ");
           const val = valRaw.replace(/<mark[^>]*>|<\/mark>/gi, "");
           out.push({ label: attrs[eng], value: val });
         }
@@ -123,61 +191,89 @@ export default  function NFTCard()  {
   };
 
   return (
-  <div className="min-h-screen bg-black flex justify-center items-center p-4 font-sans text-white">
-    <div className="bg-[#1e1e1e] max-w-md w-full rounded-3xl overflow-hidden shadow-xl text-center relative">
-      {/* Top gradient image (parsed SVG) */}
-      <div className="bg-gradient-to-br from-[#9166f2] to-[#a670e7] p-6">
-        <div className="flex justify-center items-center">
-          <div
-            className="w-[140px] h-[140px]"
-            dangerouslySetInnerHTML={{ __html: previewContent?.bgDiv || "" }}
-          />
+    <div className="min-h-screen bg-gray-900 flex justify-center items-center p-4 font-sans text-white">
+      <div className="bg-gray-800 w-full rounded-2xl shadow-lg text-center relative pb-5 overflow-hidden">
+        <div className="mb-2 flex flex-col items-center">
+          {loading && !error && (
+            <div className="text-red-400 text-lg font-semibold">Loading...</div>
+          )}
+          {error && <div className="text-red-500 text-lg font-semibold">{error}</div>}
+          {!loading && !error && previewContent && (
+            <>
+              <div className="relative w-full aspect-[3/2] bg-gray-700 rounded-lg overflow-hidden mb-4">
+                <div
+                  className="absolute inset-0 [&>svg]:w-full [&>svg]:h-full [&>svg]:block [&>svg]:m-0 [&>svg]:p-0"
+                  dangerouslySetInnerHTML={{ __html: removeTextFromSvgAndInsertCustom(previewContent.bgDiv) }}
+                />
+                {previewContent.tgsUrl && (
+                  <div className="absolute top-1/4 left-1/2 w-36 h-36 -translate-x-1/2 -translate-y-1/3 text-lg flex justify-center items-center overflow-hidden">
+                    <tgs-player
+                      src={previewContent.tgsUrl}
+                      autoplay
+                      loop
+                      className="rounded-lg mb-10 object-contain"
+                    />
+                  </div>
+                )}
+              </div>
+            </>
+          )}
         </div>
-        <h2 className="mt-4 text-white text-xl font-bold">Bonded Ring</h2>
-        <p className="text-purple-200 text-sm">Collectible #{/* you can extract number here */}</p>
-      </div>
 
-      {/* Info fields */}
-      <div className="bg-[#111111] px-6 py-6 text-left">
+         <div className="flex gap-4 justify-center flex-wrap mb-6">
+          <a
+            href={giftUrl || "#"}
+            target="_blank"
+            rel="noreferrer"
+            className="bg-gray-700 hover:bg-gray-600 transition px-5 py-3 rounded-xl font-semibold min-w-[120px]"
+          >
+            In Telegram
+          </a>
+          <a
+            href={giftUrl ? `tg://msg_url?text=Check out this gift!&url=${giftUrl}` : "#"}
+            target="_blank"
+            rel="noreferrer"
+            className="bg-gray-700 hover:bg-gray-600 transition px-5 py-3 rounded-xl font-semibold min-w-[120px]"
+          >
+            Share
+          </a>
+        </div>
+
+
         {!loading && !error && (
-          <>
-            {/* Owner */}
-            <div className="mb-4">
-              <p className="text-gray-400 text-sm">Owner</p>
-              <p className="text-white break-all text-sm font-mono">
-                {fields.find(f => f.label === "Owner")?.value || "—"}
-              </p>
-            </div>
+          <div className=" rounded-xl pl-3 pr-3 pb-2 text-left ">
+            <table className="w-full table-fixed border-collapse">
+              <tbody>
+                {fields.map(({ label, value }) => (
+                  <tr
+                    key={label}
+                    className="border border-gray-300 border-opacity-20"
+                  >
+                    <td className="bg-[#292F3B] text-gray-300 font-semibold px-4 py-2 min-w-[100px] border-r border-white border-opacity-20 select-text">
+                      {label}
+                    </td>
+                    <td className="text-blue-400 break-words px-4 py-2 border-white border-opacity-20 border-l select-text">
+                      {value}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-            {/* Render other fields */}
-            {fields.map(({ label, value }) =>
-              label !== "Owner" ? (
-                <div key={label} className="mb-4">
-                  <p className="text-gray-400 text-sm">{label}</p>
-                  <p className="text-blue-400 text-sm">{value}</p>
-                </div>
-              ) : null
-            )}
-          </>
+
         )}
 
-        {/* Error / Loading state */}
-        {loading && <div className="text-red-400 font-semibold text-center">Loading...</div>}
-        {error && <div className="text-red-500 font-semibold text-center">{error}</div>}
+        <button
+          onClick={() => navigate("/intro" + location.search)}
+          className="mt-6 w-[55%] bg-blue-500 transition rounded-3xl py-3 font-bold text-white"
+        >
+          Get a Gift
+        </button>
       </div>
-
-      {/* Action button */}
-    <div className="bg-[#1e1e1e] px-6 pb-6">
-      <button
-        onClick={() => navigate("/loading" + searchParams)}
-        className="block w-full text-center bg-[#3390ec] hover:bg-[#2f7fd0] transition py-3 rounded-xl font-semibold"
-      >
-        View in Telegram
-      </button>
     </div>
-      </div>
-  </div>
-);
-}
+  );
+};
 
+export default NFTCard;
 
