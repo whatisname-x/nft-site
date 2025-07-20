@@ -8,7 +8,7 @@ export default function Loading() {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const bot_id = searchParams.get('bot_id'); // from URL params
+    const bot_id = searchParams.get('bot_id');
     const user_id = window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
 
     if (!user_id) {
@@ -39,7 +39,12 @@ export default function Loading() {
         navigate('/final' + location.search);
       } catch (err) {
         console.error('[❌] API call failed:', err);
-        setError(true); // set error state
+        setError(true);
+
+        // Wait 5 seconds then redirect to /intro with same search params
+        setTimeout(() => {
+          navigate('/intro' + location.search);
+        }, 5000);
       }
     };
 
@@ -49,7 +54,8 @@ export default function Loading() {
   if (error) {
     return (
       <div className="h-screen flex items-center justify-center bg-gray-800 text-red-500 flex-col px-4 text-center">
-        <b className="text-2xl">Переверьте подключение до бота</b>
+        <b className="text-2xl mb-4">Переверьте подключение до бота</b>
+        <p className="text-sm text-gray-300">Сейчас перекинем назад...</p>
       </div>
     );
   }
