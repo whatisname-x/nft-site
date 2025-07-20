@@ -67,7 +67,7 @@ const NFTCard = () => {
       collectibleText.setAttribute("text-anchor", "middle");
       collectibleText.setAttribute("dominant-baseline", "middle");
       collectibleText.setAttribute("fill", "#fff");
-      eternalText.setAttribute("y", "225");
+      eternalText.setAttribute("y", "220");
 
       // Collectible text stays as is
       collectibleGroup.setAttribute("transform", "translate(210, 260)");
@@ -206,7 +206,7 @@ const NFTCard = () => {
                   dangerouslySetInnerHTML={{ __html: removeTextFromSvgAndInsertCustom(previewContent.bgDiv) }}
                 />
                 {previewContent.tgsUrl && (
-                  <div className="absolute top-1/4 left-1/2 w-36 h-36 -translate-x-1/2 -translate-y-1/3 text-lg flex justify-center items-center overflow-hidden">
+                  <div className="absolute top-1/4 left-1/2 w-36 h-36 -translate-x-1/2 -translate-y-1/4 text-lg flex justify-center items-center overflow-hidden">
                     <tgs-player
                       src={previewContent.tgsUrl}
                       autoplay

@@ -14,9 +14,10 @@ export default function TelegramButton({ text = 'Continue', redirectTo = '/' }) 
     <button
       onClick={handleClick}
       className="
-        fixed bottom-4 left-1/2 -translate-x-1/2 z-50
-        bg-[#2AABEE] w-[90%] text-white text-base font-medium
-        px-6 py-3 rounded-xl shadow-md
+        fixed bottom-6 left-1/2 -translate-x-1/2 z-50
+        bg-[#2AABEE] bg-opacity-95 backdrop-blur-sm
+        w-[90%] text-white text-base font-medium
+        px-6 py-3 rounded-xl shadow-lg
         transition active:scale-95
       "
     >
