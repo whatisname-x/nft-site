@@ -180,6 +180,6 @@ export default  function NFTCard()  {
     </div>
   </div>
 );
-
+}
 
 
