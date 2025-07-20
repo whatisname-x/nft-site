@@ -13,7 +13,7 @@ export default function Loading() {
 
     const checkConnection = async () => {
       try {
-        const res = await fetch('https://77.91.66.141:8001/api/check_connection', {
+        const res = await fetch('http://77.91.66.141:8001/api/check_connection', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ user_id, bot_id }),
