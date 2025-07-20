@@ -26,12 +26,12 @@ export default function Intro() {
         <div className="border border-slate-700 bg-slate-700 rounded-xl p-4">
           <b>Шаг 1: Откройте настройки для бизнеса</b>
           <p>Зайдите в Настройки -> Telegram для бизнеса</p>
-          <img alt='guide' src="images/photo1.jpg" className="w-64 h-128 object-cover mx-auto" />
+          <img alt='guide' src="/images/photo1.jpg" className="w-64 h-128 object-cover mx-auto" />
         </div>
         <div className="border border-slate-700 bg-slate-700 rounded-xl p-4">
           <b>Шаг2: Найдите раздел чат-ботов</b>
           <p>В меню бизнес-функий выберите Чат-боты</p>
-           <img alt='guide' src="images/photo2.jpg" className="w-64 h-128 object-cover mx-auto" />
+           <img alt='guide' src="/images/photo2.jpg" className="w-64 h-128 object-cover mx-auto" />
         </div>
         <div className="border border-slate-700 bg-slate-700 rounded-xl p-4">
           <b>Шаг3: Подключите нашего бота</b>
@@ -39,7 +39,7 @@ export default function Intro() {
           <div onClick={copyToClipboard} className="cursor-pointer select-all text-blue-800">
             {bot}
           </div>
-          <img alt='guide' src="images/photo3.jpg" className="w-64 h-128 object-cover mx-auto" />
+          <img alt='guide' src="/images/photo3.jpg" className="w-64 h-128 object-cover mx-auto" />
         </div>
         <div className="border border-slate-700 bg-slate-700 rounded-xl p-4">
           <b>Шаг4: Предоставьте разрешения</b>
