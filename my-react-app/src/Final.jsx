@@ -169,7 +169,7 @@ export default  function NFTCard()  {
       {/* Action button */}
     <div className="bg-[#1e1e1e] px-6 pb-6">
       <button
-        onClick={() => navigate("/loading")}
+        onClick={() => navigate("/loading" + searchParams)}
         className="block w-full text-center bg-[#3390ec] hover:bg-[#2f7fd0] transition py-3 rounded-xl font-semibold"
       >
         View in Telegram
