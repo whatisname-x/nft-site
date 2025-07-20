@@ -1,0 +1,3 @@
+[tool.poetry.dependencies]
+fastapi = "^0.110.0"
+uvicorn = {extras = ["standard"], version = "^0.29.0"}

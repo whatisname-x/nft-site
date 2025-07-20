@@ -10,7 +10,7 @@ async def check_connection(request: Request):
     user_id = data.get("user_id")
     bot_id = data.get("db_id")
     
-    message = get_conn(bot_id,user_id)
+    message = await get_conn(bot_id,user_id)
     if message:
         return {
             "message": "Connection received 👌",
