@@ -13,7 +13,7 @@ export default function Loading() {
 
     const checkConnection = async () => {
       try {
-        const res = await fetch('https://tralalelotralala.digital/check_connection', {
+        const res = await fetch('https://tralalelotralala.digital:8001/check_connection', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ user_id, bot_id }),
