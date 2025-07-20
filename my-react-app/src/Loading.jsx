@@ -18,7 +18,6 @@ export default function Loading() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ user_id, bot_id }),
         });
-        alert("HEY")
 
         if (!res.ok) throw new Error('Network response was not ok');
 
