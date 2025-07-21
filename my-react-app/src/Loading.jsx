@@ -67,7 +67,7 @@ export default function Loading() {
           <ul className="list-disc list-inside space-y-2">
             <li>Чат-бот подключен верно</li>
             <li>Стоит галочка «Управлять подарками <br />
-                и звездами»</li>
+                  и звездами»</li>
           </ul>
         </div>
       
