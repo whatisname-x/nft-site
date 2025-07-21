@@ -52,7 +52,7 @@ export default function Loading() {
 
   if (error) {
     return (
-      <div className="h-screen font-sans flex items-start justify-center bg-gray-900 text-red-500 px-4 pt-20 text-center">
+      <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-red-500 flex-col px-4 text-center">
         <div className="flex flex-col items-center text-white max-w-md w-full">
           
           {/* Красный крест */}
