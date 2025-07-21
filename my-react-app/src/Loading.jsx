@@ -52,17 +52,28 @@ export default function Loading() {
 
   if (error) {
     return (
-      <div className="h-screen font-sans flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 text-red-400 px-6 text-center">
-        <div className="max-w-xl p-8 rounded-2xl bg-gray-950/50 backdrop-blur-md shadow-2xl border border-gray-700">
-          <h1 className="text-3xl font-bold mb-6 text-red-400">Не удалось проверить подключение</h1>
-          <h3 className="text-gray-300 text-lg leading-relaxed">
+      <div className="h-screen font-sans flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 text-center px-6">
+        <div className="max-w-xl p-8 rounded-2xl bg-gray-950/50 backdrop-blur-md shadow-2xl border border-gray-700 text-gray-300">
+          <p className="text-lg leading-relaxed mb-6">
             Такое бывает. Иногда Telegram требуется от 10 секунд до минуты, чтобы применить изменения.
-            <br /><br />
-            Убедитесь, что Чат-бот подключен верно!
-          </h3>
-          <p className="text-sm text-gray-400 mt-8 italic">Пожалуйста, не закрывайте страницу — выполняется повторное подключение...</p>
+          </p>
+          <p className="text-lg leading-relaxed mb-6">
+            <strong>Пожалуйста, убедитесь, что:</strong>
+          </p>
+      
+          <div className="border border-red-500 rounded-xl p-4 bg-gray-900/50 text-left text-base text-gray-200 mb-6 space-y-3">
+            <ul className="list-disc list-inside space-y-2">
+              <li><span className="text-white">Чат-бот подключен верно</span></li>
+              <li><span className="text-white">Стоит галочка «Управлять подарками и звездами»</span></li>
+            </ul>
+          </div>
+      
+          <p className="text-sm text-gray-400 italic">
+            Если всё верно, попробуйте проверить подключение ещё раз.
+          </p>
         </div>
       </div>
+
 
     );
   }
