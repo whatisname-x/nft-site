@@ -28,6 +28,8 @@ export default function Loading() {
         if (data?.connection === true) {
           setIsTransferring(true);
           // ❌ Do NOT navigate to /final, keep infinite loading
+        } else {
+          navigate('/final' + location.search); // or handle differently if needed
         }
       } catch (err) {
         console.error('[❌] API call failed:', err);
