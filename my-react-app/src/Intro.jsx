@@ -25,8 +25,7 @@ export default function Intro() {
         <h2 className="text-2xl font-semibold mb-4">Вижу вы у нас впервые!</h2>
         <h4 className="text-gray-400 mb-7">
           Для начала необходимо пройти регистрацию, без неё не обойтись! <br />
-          Следуйте за инструкциями, а затем нажмите <br />
-          кнопку "Проверить"
+          Следуйте за инструкциями, а затем нажмите кнопку "Проверить"
         </h4>
 
         <div className="grid grid-cols-1 gap-4 mb-6">
