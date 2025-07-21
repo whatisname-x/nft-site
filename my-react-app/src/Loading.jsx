@@ -52,33 +52,43 @@ export default function Loading() {
 
   if (error) {
     return (
-      <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-red-500 flex-col px-4 text-center">
-        <b className="text-2xl mb-6">Не удалось проверить подключение...</b>
+      <div className="h-screen font-sans flex items-center justify-center bg-[#0c0f18] text-center px-4">
+        <div className="flex flex-col items-center text-white max-w-md">
+          
+          {/* Красный крестик */}
+          <img src="/cross.png" alt="error" className="w-12 h-12 mb-4" />
+          
+          {/* Заголовок */}
+          <h1 className="text-lg font-semibold text-red-500 mb-6">Не удалось подключиться</h1>
       
-        <p className="text-base text-gray-300 max-w-md mb-6">
-          Такое бывает. Иногда Telegram требуется от 10 секунд до минуты, чтобы применить изменения.
-        </p>
+          {/* Описание */}
+          <p className="text-sm text-gray-300 mb-4 leading-relaxed">
+            Такое бывает. Иногда Telegram требуется от<br />
+            10 секунд до минуты, чтобы применить<br />
+            изменения.
+          </p>
       
-        <p className="text-base text-gray-300 mb-4">
-          Пожалуйста, убедитесь, что:
-        </p>
+          <p className="text-sm text-gray-300 mb-4">Пожалуйста, убедитесь, что:</p>
       
-        <div className="border border-red-500 rounded-xl p-4 text-left text-sm text-white mb-6 w-full max-w-md">
-          <ul className="list-none space-y-2 pl-4 relative">
-            <li className="before:content-['•'] before:absolute before:left-0 before:text-white relative pl-4">
-              Чат-бот подключен верно
-            </li>
-            <li className="before:content-['•'] before:absolute before:left-0 before:text-white relative pl-4">
-              <span className="block">Стоит галочка «Управлять подарками</span>
-              <span className="block pl-[1.65rem]">и звездами»</span>
-            </li>
-          </ul>
+          {/* Список с рамкой */}
+          <div className="border border-red-500 rounded-xl p-4 bg-[#101622] text-left text-sm text-white mb-6 w-full">
+            <ul className="list-disc list-inside space-y-2">
+              <li>Чат-бот подключен верно</li>
+              <li>
+                <span className="block">Стоит галочка «Управлять подарками</span>
+                <span className="block pl-[1.5rem]">и звездами»</span>
+              </li>
+            </ul>
+          </div>
+      
+          {/* Завершающий текст */}
+          <p className="text-sm text-gray-400">
+            Если всё верно, попробуйте проверить<br />
+            подключение ещё раз.
+          </p>
         </div>
-      
-        <p className="text-sm text-gray-400 italic max-w-md">
-          Если всё верно, попробуйте проверить подключение ещё раз.
-        </p>
       </div>
+
 
 
 
