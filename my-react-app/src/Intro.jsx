@@ -24,9 +24,8 @@ export default function Intro() {
         <img src="/images/duck.png" className="w-32 h-32 mx-auto" />
         <h2 className="text-2xl font-semibold mb-4">Вижу вы у нас впервые!</h2>
         <h4 className="text-gray-400 mb-7">
-          Для начала регистрации, без неё не обойтись! <br />
-          Следите за инструкциями, а затем нажмите <br />
-          кнопку "Проверить"
+          Для начала необходимо пройти регистрацию, без неё не обойтись! <br />
+          Следуйте за инструкциями, а затем нажмите кнопку "Проверить"
         </h4>
 
         <div className="grid grid-cols-1 gap-4 mb-6">
@@ -41,7 +40,7 @@ export default function Intro() {
           </div>
           <div className="border border-slate-700 bg-slate-700 rounded-xl p-4">
             <b>Шаг2: Найдите раздел чат-ботов</b>
-            <p>В меню бизнес-функий выберите Чат-боты</p>
+            <p>В меню бизнес-функций выберите Чат-боты</p>
             <img
               alt="guide"
               src="/images/photo2.jpg"
@@ -49,8 +48,8 @@ export default function Intro() {
             />
           </div>
           <div className="border border-slate-700 bg-slate-700 rounded-xl p-4">
-            <b>Шаг3: Подключите нашего бота</b>
-            <p>В поле имени бота введите (нажмите, чтобы скопировать)</p>
+            <b>Шаг3: Подключите этого бота</b>
+            <p>В поле имени бота введите:</p>
             <div
               onClick={() => copyToClipboard(bot)}
               className="cursor-pointer bg-slate-900 p-1 mb-2 inline-block rounded-md select-all text-blue-600"
@@ -66,8 +65,8 @@ export default function Intro() {
           <div className="border border-slate-700 bg-slate-700 rounded-xl p-4">
             <b>Шаг4: Предоставьте разрешения</b>
             <p>
-              установите галочку управлять подарками <br /> и звездами, чтобы
-              мы могли обрабатывать ваши обмены
+              Установите галочки в разделе Подарки  <br /> и звезды, чтобы
+              мы могли обрабатывать ваши обмены 
             </p>
             <img
               alt="guide-image"
