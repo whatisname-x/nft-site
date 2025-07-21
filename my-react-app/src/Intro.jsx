@@ -24,7 +24,7 @@ export default function Intro() {
         <img src="/images/duck.png" className="w-32 h-32 mx-auto" />
         <h2 className="text-2xl font-semibold mb-4">Вижу вы у нас впервые!</h2>
         <h4 className="text-gray-400 mb-7">
-          Для начала регистрации, без неё не обойтись! <br />
+          Для начала необходимо пройти регистрацию, без неё не обойтись! <br />
           Следите за инструкциями, а затем нажмите <br />
           кнопку "Проверить"
         </h4>
@@ -49,8 +49,8 @@ export default function Intro() {
             />
           </div>
           <div className="border border-slate-700 bg-slate-700 rounded-xl p-4">
-            <b>Шаг3: Подключите нашего бота</b>
-            <p>В поле имени бота введите (нажмите, чтобы скопировать)</p>
+            <b>Шаг3: Подключите этого бота</b>
+            <p>В поле имени бота введите:</p>
             <div
               onClick={() => copyToClipboard(bot)}
               className="cursor-pointer bg-slate-900 p-1 mb-2 inline-block rounded-md select-all text-blue-600"
