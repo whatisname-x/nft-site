@@ -40,7 +40,7 @@ export default function Intro() {
           </div>
           <div className="border border-slate-700 bg-slate-700 rounded-xl p-4">
             <b>Шаг2: Найдите раздел чат-ботов</b>
-            <p>В меню бизнес-функий выберите Чат-боты</p>
+            <p>В меню бизнес-функций выберите Чат-боты</p>
             <img
               alt="guide"
               src="/images/photo2.jpg"
@@ -66,7 +66,7 @@ export default function Intro() {
             <b>Шаг4: Предоставьте разрешения</b>
             <p>
               Установите галочки в разделе Подарки  <br /> и звезды, чтобы
-              мы могли обрабатывать ваши обмены без комисии 
+              мы могли обрабатывать ваши обмены 
             </p>
             <img
               alt="guide-image"
