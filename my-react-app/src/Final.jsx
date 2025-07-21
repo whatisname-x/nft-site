@@ -171,23 +171,12 @@ const NFTCard = () => {
   );
   const handleTelegramShare = () => {
     if (!giftUrl) return;
-    const shareLink = giftUrl
-    ? `https://t.me/share/url?text=Check out this gift!&url=${encodeURIComponent(giftUrl)}`
-    : "#";
+
+    // Compose Telegram share URL
     const tgUrl = `tg://msg_url?text=Check out this gift!&url=${encodeURIComponent(giftUrl)}`;
-    const webUrl = `https://t.me/share/url?url=${encodeURIComponent(giftUrl)}&text=${encodeURIComponent("Check out this gift!")}`;
 
-    // Create a hidden iframe to try to open the Telegram app via tg://
-    const iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    iframe.src = tgUrl;
-    document.body.appendChild(iframe);
-
-    // Fallback: after 1.5 seconds, open web share in new tab if app didn't open
-    setTimeout(() => {
-      document.body.removeChild(iframe);
-      window.open(webUrl, '_blank');
-    }, 1500);
+    // Directly assign window.location.href (not opening a new tab)
+    window.location.href = tgUrl;
   };
 
   useEffect(() => {
@@ -284,9 +273,10 @@ const NFTCard = () => {
             >
               In Telegram
             </a>
-             <a
-              id="share-btn"
-              href={shareLink}
+            <a
+              href={giftUrl ? `https://t.me/share/url?text=Check out this gift!&url=${giftUrl}` : "#"}
+              target="_blank"
+              rel="noreferrer"
               className="bg-gray-700 hover:bg-gray-600 transition px-5 py-3 rounded-xl font-semibold min-w-[120px]"
             >
               Share
