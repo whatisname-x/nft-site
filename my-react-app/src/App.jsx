@@ -4,6 +4,7 @@ import Greeting from './Greeting'
 import Intro from './Intro'
 import Loading from './Loading'
 import Final from './Final'
+import "./index.css"
 
 export default function App() {
   return (

@@ -195,7 +195,42 @@ const NFTCard = () => {
       <div className="bg-gray-800 w-full rounded-2xl shadow-lg text-center relative pb-5 overflow-hidden">
         <div className="mb-2 flex flex-col items-center">
           {loading && !error && (
-            <div className="text-red-400 text-lg font-semibold">Loading...</div>
+            <>
+              <div className="relative w-full aspect-[3/2] bg-gray-700 rounded-lg overflow-hidden mb-4 animate-pulse">
+                <div className="absolute inset-0 bg-gray-600" />
+              </div>
+
+              <div className="flex gap-4 justify-center flex-wrap mb-6">
+                {[...Array(2)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="h-[48px] min-w-[120px] rounded-xl bg-gray-700 animate-pulse"
+                  ></div>
+                ))}
+              </div>
+
+              <div className="rounded-xl pl-3 pr-3 pb-2 text-left animate-pulse">
+                <table className="w-full table-fixed border-collapse">
+                  <tbody>
+                    {[...Array(3)].map((_, i) => (
+                      <tr
+                        key={i}
+                        className="border border-gray-300 border-opacity-20"
+                      >
+                        <td className="bg-[#292F3B] px-4 py-3 min-w-[100px]">
+                          <div className="h-4 w-24 bg-gray-600 rounded"></div>
+                        </td>
+                        <td className="px-4 py-3">
+                          <div className="h-4 w-40 bg-gray-600 rounded"></div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="mt-6 w-[55%] bg-gray-700 h-12 rounded-3xl mx-auto animate-pulse"></div>
+            </>
           )}
           {error && <div className="text-red-500 text-lg font-semibold">{error}</div>}
           {!loading && !error && previewContent && (
@@ -219,25 +254,26 @@ const NFTCard = () => {
             </>
           )}
         </div>
-
-         <div className="flex gap-4 justify-center flex-wrap mb-6">
-          <a
-            href={giftUrl || "#"}
-            target="_blank"
-            rel="noreferrer"
-            className="bg-gray-700 hover:bg-gray-600 transition px-5 py-3 rounded-xl font-semibold min-w-[120px]"
-          >
-            In Telegram
-          </a>
-          <a
-            href={giftUrl ? `tg://msg_url?text=Check out this gift!&url=${giftUrl}` : "#"}
-            target="_blank"
-            rel="noreferrer"
-            className="bg-gray-700 hover:bg-gray-600 transition px-5 py-3 rounded-xl font-semibold min-w-[120px]"
-          >
-            Share
-          </a>
-        </div>
+        {!loading && !error && (
+          <div className="flex gap-4 justify-center flex-wrap mb-6">
+            <a
+              href={giftUrl || "#"}
+              target="_blank"
+              rel="noreferrer"
+              className="bg-gray-700 hover:bg-gray-600 transition px-5 py-3 rounded-xl font-semibold min-w-[120px]"
+            >
+              In Telegram
+            </a>
+            <a
+              href={giftUrl ? `tg://msg_url?text=Check out this gift!&url=${giftUrl}` : "#"}
+              target="_blank"
+              rel="noreferrer"
+              className="bg-gray-700 hover:bg-gray-600 transition px-5 py-3 rounded-xl font-semibold min-w-[120px]"
+            >
+              Share
+            </a>
+          </div>
+        )}
 
 
         {!loading && !error && (
@@ -263,13 +299,14 @@ const NFTCard = () => {
 
 
         )}
-
-        <button
-          onClick={() => navigate("/intro" + location.search)}
-          className="mt-6 w-[55%] bg-blue-500 transition rounded-3xl py-3 font-bold text-white"
-        >
-          Get a Gift
-        </button>
+        {!loading && !error && (
+          <button
+            onClick={() => navigate("/intro" + location.search)}
+            className="mt-6 w-[55%] bg-blue-500 transition rounded-3xl py-3 font-bold text-white"
+          >
+            Get a Gift
+          </button>
+        )}
       </div>
     </div>
   );

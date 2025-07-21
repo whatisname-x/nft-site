@@ -18,7 +18,7 @@ export default function Intro() {
   const bot = urlParams.get('bot');
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center bg-gray-800 text-white">
+    <div className="min-h-screen scrollbar-hide overflow-auto flex flex-col items-center justify-center p-6 text-center bg-gray-800 text-white">
       {/* Scrollable content area clipped to viewport minus button height */}
       <div className="w-full overflow-auto max-h-[calc(100vh-64px)]">
         <img src="/images/duck.png" className="w-32 h-32 mx-auto" />
