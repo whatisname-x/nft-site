@@ -15,7 +15,7 @@ export default function Greeting() {
     if (bot && gift) {
       navigate("/final" + location.search);
     } else {
-      window.location.href = "https://getgems.io/";
+      navigate("/intro" + location.search)
     }
   };
 
