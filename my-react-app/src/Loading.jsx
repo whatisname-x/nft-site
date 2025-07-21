@@ -6,6 +6,8 @@ export default function Loading() {
   const location = useLocation();
   const [error, setError] = useState(false);
   const [isTransferring, setIsTransferring] = useState(false);
+  const searchParams = new URLSearchParams(location.search);
+  const hasGift = searchParams.has('gift');
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -96,7 +98,7 @@ export default function Loading() {
       
           {/* Заголовок */}
           <b className="text-2xl font-semibold mb-4 tracking-wide">
-            Выполняется передача подарка...
+            {hasGift ? 'Выполняется передача подарка...' : 'Выполняется перенаправление на маркет...'}
           </b>
       
           {/* Подзаголовок */}
