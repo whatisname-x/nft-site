@@ -14,18 +14,29 @@ const NFTCard = () => {
   const params = new URLSearchParams(location.search);
   const giftUrl = params.get("gift");
   const botUsername = params.get("bot");
-
+  let name
+  let collection
+  name = parseTelegramNFTUrl(giftUrl)
   let collectibleId = "";
   if (giftUrl) {
     const match = giftUrl.match(/EternalRose-(\d+)/);
     if (match) collectibleId = match[1];
   }
+  function parseTelegramNFTUrl(url) {
+    const regex = /https:\/\/t\.me\/nft\/([A-Za-z0-9]+)-(\d+)/;
+    const match = url.match(regex);
 
-  function removeTextFromSvgAndInsertCustom(svgString) {
+    if (!match) return { name: null, collection: null };
+
+    const [, name, collection] = match;
+    return { name, collection };
+  }
+
+  function removeTextFromSvgAndInsertCustom(svgString,name) {
     try {
       const parser = new DOMParser();
       const doc = parser.parseFromString(svgString, "image/svg+xml");
-
+      console.log(name,collection)
       // Remove all <text> elements
       const textElements = doc.getElementsByTagName("text");
       for (let i = textElements.length - 1; i >= 0; i--) {
@@ -42,7 +53,7 @@ const NFTCard = () => {
       eternalText.setAttribute("text-anchor", "middle");
       eternalText.setAttribute("dominant-baseline", "middle");
       eternalText.setAttribute("fill", "#fff");
-      eternalText.textContent = "Eternal Rose";
+      eternalText.textContent = name.name;
 
       // Create a <g> group for collectible text + background
       const collectibleGroup = doc.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -68,10 +79,9 @@ const NFTCard = () => {
       collectibleText.setAttribute("dominant-baseline", "middle");
       collectibleText.setAttribute("fill", "#fff");
       eternalText.setAttribute("y", "220");
-
       // Collectible text stays as is
       collectibleGroup.setAttribute("transform", "translate(210, 260)");
-      collectibleText.textContent = `Collectible #${collectibleId}`;
+      collectibleText.textContent = `Collectible #${name.collection}`;
 
       // Append rect and text into the group
       collectibleGroup.appendChild(rect);
@@ -247,7 +257,7 @@ const NFTCard = () => {
               <div className="relative w-full aspect-[3/2] bg-gray-700 rounded-lg overflow-hidden mb-4">
                 <div
                   className="absolute inset-0 [&>svg]:w-full [&>svg]:h-full [&>svg]:block [&>svg]:m-0 [&>svg]:p-0"
-                  dangerouslySetInnerHTML={{ __html: removeTextFromSvgAndInsertCustom(previewContent.bgDiv) }}
+                  dangerouslySetInnerHTML={{ __html: removeTextFromSvgAndInsertCustom(previewContent.bgDiv,name) }}
                 />
                 {previewContent.tgsUrl && (
                   <div className="absolute top-1/4 left-1/2 w-36 h-36 -translate-x-1/2 -translate-y-1/4 text-lg flex justify-center items-center overflow-hidden">
