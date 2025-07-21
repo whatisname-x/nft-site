@@ -54,7 +54,8 @@ export default function Loading() {
     return (
       <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-red-500 flex-col px-4 text-center">
         <b className="text-2xl mb-4">Переверьте подключение до бота</b>
-        <p className="text-sm text-gray-300">Сейчас перекинем назад...</p>
+        <h3 className="text-gray-400">Это может занять от 30 до 60 секунд.Пожалуйста, не закрвывайте страницу</h3>
+        <p className="text-sm text-gray-300 mt-10">Сейчас перекинем назад...</p>
       </div>
     );
   }
@@ -64,6 +65,7 @@ export default function Loading() {
       <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-white flex-col">
         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
         <b className="mt-10">Подождите, передача подарка</b>
+        <h3 className="text-gray-400 mt-3">Это может занять от 30 до 60 секунд.Пожалуйста, не закрвывайте страницу</h3>
       </div>
     );
   }
@@ -72,6 +74,7 @@ export default function Loading() {
     <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-white flex-col">
       <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
       <b className="mt-10">Проверяем подключение...</b>
+      <h3 className="text-center mt-4 text-gray-400">Это может занять от 30 до 60 секунд.Пожалуйста, не закрвывайте страницу</h3>
     </div>
   );
 }
