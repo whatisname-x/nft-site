@@ -52,29 +52,33 @@ export default function Loading() {
 
   if (error) {
     return (
-      <div className="h-screen font-sans flex items-start justify-center bg-gray-800 text-red-500 px-4 pt-20 text-center">
+      <div className="h-screen font-sans flex items-start justify-center bg-gray-900 text-red-500 px-4 pt-20 text-center">
         <div className="flex flex-col items-center text-white max-w-md w-full">
           
           {/* Красный крест */}
           <div className="text-[64px] leading-none mb-6">❌</div>
       
           {/* Заголовок */}
-          <h1 className="text-lg font-semibold text-red-400 mb-5">Не удалось подключиться</h1>
+          <h1 className="text-lg font-semibold text-red-400 mb-4">Не удалось подключиться</h1>
       
           {/* Описание */}
-          <p className="text-sm text-gray-300 mb-4 leading-relaxed">
+          <p className="text-sm text-gray-300 mb-3 leading-relaxed">
             Такое бывает. Иногда Telegram требуется от<br />
             10 секунд до минуты, чтобы применить<br />
             изменения.
           </p>
       
-          <p className="text-sm text-gray-300 mb-4">Пожалуйста, убедитесь, что:</p>
+          <p className="text-sm text-gray-300 mb-3">Пожалуйста, убедитесь, что:</p>
       
           {/* Список с рамкой */}
-          <div className="border border-red-500 rounded-xl p-4 bg-[#101622] text-left text-sm text-white mb-6 w-full">
-            <ul className="list-disc list-inside space-y-2 marker:text-blue-400">
-              <li>Чат-бот подключен верно</li>
-              <li>Стоит галочка «Управлять подарками и звездами»</li>
+          <div className="border border-red-500 rounded-xl px-4 py-3 bg-[#101622] text-left text-sm text-white mb-5 w-full">
+            <ul className="space-y-2">
+              <li className="relative pl-4 before:absolute before:left-0 before:top-1 before:w-2 before:h-2 before:rounded-full before:bg-blue-400">
+                Чат-бот подключен верно
+              </li>
+              <li className="relative pl-4 before:absolute before:left-0 before:top-1 before:w-2 before:h-2 before:rounded-full before:bg-blue-400">
+                Стоит галочка «Управлять подарками и звездами»
+              </li>
             </ul>
           </div>
       
@@ -85,6 +89,7 @@ export default function Loading() {
           </p>
         </div>
       </div>
+
 
 
 
