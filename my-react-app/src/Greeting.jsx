@@ -13,7 +13,7 @@ export default function Greeting() {
 
   const handleClick = () => {
     if (bot && gift) {
-      navigate(`/final` + urlParams);
+      navigate("/final" + location.search);
     } else {
       window.location.href = "https://getgems.io/";
     }

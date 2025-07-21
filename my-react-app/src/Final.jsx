@@ -9,6 +9,7 @@ const NFTCard = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
+  const params = new URLSearchParams(location.search);
   const botUsername = params.get("bot");
   const giftUrl = params.get("gift");
   if (!giftUrl || !botUsername) {
@@ -16,7 +17,6 @@ const NFTCard = () => {
         return;
   }
   // Extract collectible ID from gift URL (for SVG text only)
-  const params = new URLSearchParams(location.search);
 
   let name
   let collection
