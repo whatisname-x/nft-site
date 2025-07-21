@@ -83,16 +83,6 @@ export default function Loading() {
           </p>
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-
     );
   }
 
@@ -135,3 +125,4 @@ export default function Loading() {
       </div>
     </div>
   );
+}
