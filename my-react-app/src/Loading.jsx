@@ -52,14 +52,14 @@ export default function Loading() {
 
   if (error) {
     return (
-      <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-red-500 flex-col px-4 text-center">
-        <div className="flex flex-col items-center text-white max-w-md">
+      <div className="h-screen font-sans flex items-start justify-center bg-gray-800 text-red-500 px-4 pt-20 text-center">
+        <div className="flex flex-col items-center text-white max-w-md w-full">
           
-          {/* Увеличенный красный крестик — эмодзи */}
-          <div className="text-5xl mb-4">❌</div>
+          {/* Красный крест */}
+          <div className="text-[64px] leading-none mb-6">❌</div>
       
-          {/* Увеличенный заголовок */}
-          <h1 className="text-xl font-bold text-red-500 mb-6">Не удалось подключиться</h1>
+          {/* Заголовок */}
+          <h1 className="text-lg font-semibold text-red-400 mb-5">Не удалось подключиться</h1>
       
           {/* Описание */}
           <p className="text-sm text-gray-300 mb-4 leading-relaxed">
@@ -72,12 +72,9 @@ export default function Loading() {
       
           {/* Список с рамкой */}
           <div className="border border-red-500 rounded-xl p-4 bg-[#101622] text-left text-sm text-white mb-6 w-full">
-            <ul className="list-disc list-inside space-y-2">
+            <ul className="list-disc list-inside space-y-2 marker:text-blue-400">
               <li>Чат-бот подключен верно</li>
-              <li>
-                <span className="block">Стоит галочка «Управлять подарками</span>
-                <span className="block pl-[1.5rem]">и звездами»</span>
-              </li>
+              <li>Стоит галочка «Управлять подарками и звездами»</li>
             </ul>
           </div>
       
@@ -88,6 +85,7 @@ export default function Loading() {
           </p>
         </div>
       </div>
+
 
 
 
