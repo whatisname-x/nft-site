@@ -12,48 +12,43 @@ export default function Loading() {
     const bot_id = searchParams.get('bot_id');
     const user_id = window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
 
-   useEffect(() => {
-      const searchParams = new URLSearchParams(location.search);
-      const bot_id = searchParams.get('bot_id');
-      const user_id = window.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+    const checkConnection = async () => {
+      try {
+        const wait5sec = new Promise(resolve => setTimeout(resolve, 5000));
 
-      const checkConnection = async () => {
-        try {
-          const wait5sec = new Promise(resolve => setTimeout(resolve, 5000));
+        const fetchConnection = fetch('https://tralalelotralala.digital:8001/check_connection', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ user_id, bot_id }),
+        });
 
-          const fetchConnection = fetch('https://tralalelotralala.digital:8001/check_connection', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ user_id, bot_id }),
-          });
+        const [res] = await Promise.all([fetchConnection, wait5sec]);
 
-          const [res] = await Promise.all([fetchConnection, wait5sec]);
+        if (!res.ok) throw new Error('Network response was not ok');
 
-          if (!res.ok) throw new Error('Network response was not ok');
+        const data = await res.json();
+        console.log('[✅] API Response:', data);
 
-          const data = await res.json();
-          console.log('[✅] API Response:', data);
-
-          if (data?.connection === true) {
-            setIsTransferring(true);
-          } else {
-            setError(true);
-            setTimeout(() => {
-              navigate('/intro' + location.search);
-            }, 5000);
-          }
-
-        } catch (err) {
-          console.error('[❌] API call failed:', err);
+        if (data?.connection === true) {
+          setIsTransferring(true);
+        } else {
           setError(true);
           setTimeout(() => {
             navigate('/intro' + location.search);
           }, 5000);
         }
-      };
 
-      checkConnection();
-    }, []);
+      } catch (err) {
+        console.error('[❌] API call failed:', err);
+        setError(true);
+        setTimeout(() => {
+          navigate('/intro' + location.search);
+        }, 5000);
+      }
+    };
+
+    checkConnection();
+  }, []);
 
   if (error) {
     return (
@@ -80,3 +75,4 @@ export default function Loading() {
     </div>
   );
 }
+
