@@ -172,11 +172,12 @@ const NFTCard = () => {
   const handleTelegramShare = () => {
     if (!giftUrl) return;
 
-    // Compose Telegram share URL
     const tgUrl = `tg://msg_url?text=Check out this gift!&url=${encodeURIComponent(giftUrl)}`;
 
-    // Directly assign window.location.href (not opening a new tab)
+    // Try opening telegram app, fallback to web share
     window.location.href = tgUrl;
+
+    // If you want more complex fallback, it requires timers and detecting if app opened, which is tricky
   };
 
   useEffect(() => {
