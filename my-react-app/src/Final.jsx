@@ -171,7 +171,9 @@ const NFTCard = () => {
   );
   const handleTelegramShare = () => {
     if (!giftUrl) return;
-
+    const shareLink = giftUrl
+    ? `https://t.me/share/url?text=Check out this gift!&url=${encodeURIComponent(giftUrl)}`
+    : "#";
     const tgUrl = `tg://msg_url?text=Check out this gift!&url=${encodeURIComponent(giftUrl)}`;
     const webUrl = `https://t.me/share/url?url=${encodeURIComponent(giftUrl)}&text=${encodeURIComponent("Check out this gift!")}`;
 
@@ -282,12 +284,13 @@ const NFTCard = () => {
             >
               In Telegram
             </a>
-            <button
-              onClick={handleTelegramShare}
+             <a
+              id="share-btn"
+              href={shareLink}
               className="bg-gray-700 hover:bg-gray-600 transition px-5 py-3 rounded-xl font-semibold min-w-[120px]"
             >
               Share
-            </button>
+            </a>
           </div>
         )}
 
