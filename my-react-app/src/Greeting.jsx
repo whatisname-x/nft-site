@@ -17,14 +17,10 @@ export default function Greeting() {
     const urlParams = new URLSearchParams(location.search);
     const bot = urlParams.get('bot');
     const url = urlParams.get('gift');
-    console.log(bot,url)
-    console.log(!url, !bot)
     if (!url || !bot) {
       setRedirectTo("https://getgems.io/");
-      console.log("hey")
     } else {
       setRedirectTo("/final");
-      console.log("hey2")
     }
   }, [location.search]);
 
@@ -32,7 +28,7 @@ export default function Greeting() {
     <div className="h-screen font-sans flex flex-col items-center justify-center text-center p-4 bg-gray-800 text-white">
       <h1 className="text-3xl font-bold mb-6">Добро пожаловать в {bot}</h1>
       <h3 className="text-gray-400">Здесь начинаеться мир продажи и обмена подарками</h3>
-      <TelegramButton text="Продолжить" redirectTo="/final" />
+      <TelegramButton text="Продолжить" redirectTo={redirect} />
     </div>
   )
 }
