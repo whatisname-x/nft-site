@@ -13,11 +13,17 @@ export default function Greeting() {
   const urlParams = new URLSearchParams(window.location.search)
   const bot = urlParams.get('bot') 
   const url = urlParams.get('gift')
-  if (!url || !bot) {
-    setRedirectTo("https://getgems.io/")
-  } else {
-    setRedirectTo("/final")
-  }
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const bot = urlParams.get('bot');
+    const url = urlParams.get('gift');
+
+    if (!url || !bot) {
+      setRedirectTo("https://getgems.io/");
+    } else {
+      setRedirectTo("/final");
+    }
+  }, [location.search]);
 
   return (
     <div className="h-screen font-sans flex flex-col items-center justify-center text-center p-4 bg-gray-800 text-white">
