@@ -55,13 +55,10 @@ export default function Loading() {
       <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-red-500 flex-col px-4 text-center relative -mt-10">
         <div className="flex flex-col items-center text-white max-w-md w-full">
           
-          {/* Красный крест */}
           <div className="text-[64px] leading-none mb-6 -mt-6">❌</div>
       
-          {/* Заголовок */}
-          <h1 className="text-lg font-semibold text-red-400 mb-4">Не удалось подключиться</h1>
+          <h1 className="text-lg font-semibold text-red-400 mb-4">Не удалось проверить подключение</h1>
       
-          {/* Описание */}
           <p className="text-sm text-gray-300 mb-3 leading-relaxed">
             Такое бывает. Иногда Telegram требуется от<br />
             10 секунд до минуты, чтобы применить<br />
@@ -70,7 +67,6 @@ export default function Loading() {
       
           <p className="text-sm text-gray-300 mb-3">Пожалуйста, убедитесь, что:</p>
       
-          {/* Список с рамкой */}
           <div className="border border-red-500 rounded-xl px-4 py-3 bg-[#101622] text-left text-sm text-white mb-5 w-full">
             <ul className="space-y-2">
               <li className="relative pl-4 before:absolute before:left-0 before:top-1 before:w-2 before:h-2 before:rounded-full before:bg-blue-400">
@@ -82,10 +78,8 @@ export default function Loading() {
             </ul>
           </div>
       
-          {/* Завершающий текст */}
           <p className="text-sm text-gray-400">
-            Если всё верно, попробуйте проверить<br />
-            подключение ещё раз.
+            Пожалуйста, не закрывайте страницу — выполняется повторное подключение...
           </p>
         </div>
       </div>
