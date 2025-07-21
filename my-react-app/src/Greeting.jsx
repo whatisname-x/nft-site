@@ -27,7 +27,7 @@ export default function Greeting() {
       </h3>
       <button
         onClick={handleClick}
-        className="bg-blue-400 w-[80%] absolute bottom-6 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg text-white text-sm font-medium hover:bg-blue-500 transition"
+        className="bg-[#2da7e0] w-[88%] absolute bottom-6 left-1/2 transform -translate-x-1/2 px-6 py-2.5 rounded-lg text-white text-sm font-medium hover:bg-[#199ad9] transition"
       >
         Продолжить
       </button>
