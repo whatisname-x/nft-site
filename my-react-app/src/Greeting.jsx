@@ -6,8 +6,8 @@ export default function Greeting() {
   const location = useLocation();
 
   const params = new URLSearchParams(location.search);
-  const botParam = params.get('bot');
-  const giftParam = params.get('gift');
+  const bot = params.get('bot');
+  const gift = params.get('gift');
 
 
   const handleClick = () => {
