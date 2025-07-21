@@ -158,7 +158,7 @@ const NFTCard = () => {
       } catch (e) {
         console.error(`Error loading NFT (attempt ${retryCount + 1}):`, e);
         if (retryCount < maxRetries) {
-          setError("Loading...");
+          setLoading(true)
           setTimeout(() => loadNFT(retryCount + 1, maxRetries), 3000);
         } else {
           setError("Ошибка загрузки обновите страницу!");
