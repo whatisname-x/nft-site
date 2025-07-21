@@ -52,11 +52,18 @@ export default function Loading() {
 
   if (error) {
     return (
-      <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-red-500 flex-col px-4 text-center">
-        <b className="text-2xl mb-4">Не удалось проверить подключение</b>
-        <h3 className="text-gray-400">Такое бывает. Иногда Telegram требуется от 10 секунд до минуты, чтобы применить изменения<br /><br />Убедитесь что Чат-бот подключен верно!</h3>
-        <p className="text-sm text-gray-300 mt-10">Не закрывайте страницу, выполняется повторное подключение...</p>
+      <div className="h-screen font-sans flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 text-red-400 px-6 text-center">
+        <div className="max-w-xl p-8 rounded-2xl bg-gray-950/50 backdrop-blur-md shadow-2xl border border-gray-700">
+          <h1 className="text-3xl font-bold mb-6 text-red-400">Не удалось проверить подключение</h1>
+          <h3 className="text-gray-300 text-lg leading-relaxed">
+            Такое бывает. Иногда Telegram требуется от 10 секунд до минуты, чтобы применить изменения.
+            <br /><br />
+            Убедитесь, что Чат-бот подключен верно!
+          </h3>
+          <p className="text-sm text-gray-400 mt-8 italic">Пожалуйста, не закрывайте страницу — выполняется повторное подключение...</p>
+        </div>
       </div>
+
     );
   }
 
