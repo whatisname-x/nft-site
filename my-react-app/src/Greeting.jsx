@@ -5,19 +5,10 @@ export default function Greeting() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [bot, setBot] = useState('');
-  const [gift, setGift] = useState('');
-  const [ready, setReady] = useState(false);
+  const params = new URLSearchParams(location.search);
+  const botParam = params.get('bot');
+  const giftParam = params.get('gift');
 
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const botParam = params.get('bot');
-    const giftParam = params.get('gift');
-
-    setBot(botParam);
-    setGift(giftParam);
-    setReady(true); // indicates params have been checked
-  }, [location.search]);
 
   const handleClick = () => {
     if (bot && gift) {
@@ -27,9 +18,6 @@ export default function Greeting() {
     }
   };
 
-  if (!ready) {
-    return <div className="text-white text-center mt-10">Загрузка...</div>;
-  }
 
   return (
     <div className="h-screen font-sans flex flex-col items-center justify-center text-center p-4 bg-gray-800 text-white">
