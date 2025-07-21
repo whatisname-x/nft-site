@@ -169,6 +169,15 @@ const NFTCard = () => {
     },
     [botUsername, giftUrl, cache]
   );
+  const handleTelegramShare = () => {
+    if (!giftUrl) return;
+
+    // Compose Telegram share URL
+    const tgUrl = `tg://msg_url?text=Check out this gift!&url=${encodeURIComponent(giftUrl)}`;
+
+    // Directly assign window.location.href (not opening a new tab)
+    window.location.href = tgUrl;
+  };
 
   useEffect(() => {
     loadNFT();
@@ -264,14 +273,12 @@ const NFTCard = () => {
             >
               In Telegram
             </a>
-            <a
-              href={giftUrl ? `tg://msg_url?text=Check out this gift!&url=${giftUrl}` : "#"}
-              target="_blank"
-              rel="noreferrer"
+            <button
+              onClick={handleTelegramShare}
               className="bg-gray-700 hover:bg-gray-600 transition px-5 py-3 rounded-xl font-semibold min-w-[120px]"
             >
               Share
-            </a>
+            </button>
           </div>
         )}
 
