@@ -25,7 +25,7 @@ export default function Loading() {
         const data = await res.json();
         console.log('[✅] API Response:', data);
 
-        if (data?.success === true) {
+        if (data?.connection === true) {
           setIsTransferring(true);
           // ❌ Do NOT navigate to /final, keep infinite loading
         }
