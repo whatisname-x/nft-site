@@ -66,7 +66,7 @@ export default function Loading() {
         <div className="border border-red-500 rounded-xl p-4 text-left text-sm text-white mb-6 w-full max-w-md">
           <ul className="list-disc list-inside space-y-2">
             <li>Чат-бот подключен верно</li>
-            <li>Стоит галочка «Управлять подарками и звездами»</li>
+            <li>Стоит галочка «Управлять подарками <br />и звездами»</li>
           </ul>
         </div>
       
