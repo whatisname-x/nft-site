@@ -52,11 +52,11 @@ export default function Loading() {
 
   if (error) {
     return (
-      <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-red-500 flex-col px-4 text-center">
+      <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-red-500 flex-col px-4 text-center relative -mt-10">
         <div className="flex flex-col items-center text-white max-w-md w-full">
           
           {/* Красный крест */}
-          <div className="text-[64px] leading-none mb-6">❌</div>
+          <div className="text-[64px] leading-none mb-6 -mt-6">❌</div>
       
           {/* Заголовок */}
           <h1 className="text-lg font-semibold text-red-400 mb-4">Не удалось подключиться</h1>
@@ -89,6 +89,7 @@ export default function Loading() {
           </p>
         </div>
       </div>
+
 
 
 
