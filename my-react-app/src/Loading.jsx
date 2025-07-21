@@ -88,22 +88,26 @@ export default function Loading() {
 
   if (isTransferring) {
     return (
-      <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-white px-4 text-center">
+      <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-white px-4 text-center transition-all duration-500 ease-in-out">
         <div className="flex flex-col items-center max-w-md w-full">
           
           {/* Спиннер */}
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 mb-8"></div>
-  
+      
           {/* Заголовок */}
-          <b className="text-xl font-semibold mb-4">Выполняется передача подарка...</b>
-  
-          {/* Описание */}
+          <b className="text-2xl font-semibold mb-4 tracking-wide">
+            Выполняется передача подарка...
+          </b>
+      
+          {/* Подзаголовок */}
           <h3 className="text-base text-gray-400 leading-relaxed">
             Это может занять от 30 до 60 секунд.<br />
             Пожалуйста, не закрывайте страницу.
           </h3>
+      
         </div>
       </div>
+
     );
   }
   
@@ -114,10 +118,9 @@ export default function Loading() {
         {/* Спиннер */}
         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 mb-8"></div>
     
-        {/* Заголовок — заменить текст при смене состояния */}
+        {/* Заголовок */}
         <b className="text-2xl font-semibold mb-4 tracking-wide">
           Проверяем подключение...
-          {/* Или: Выполняется передача подарка... */}
         </b>
     
         {/* Подзаголовок */}
@@ -128,6 +131,7 @@ export default function Loading() {
     
       </div>
     </div>
+
 
   );
 }
