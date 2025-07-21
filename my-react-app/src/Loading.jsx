@@ -25,11 +25,17 @@ export default function Loading() {
         const data = await res.json();
         console.log('[✅] API Response:', data);
         alert(data.connection)
+        setIsTransferring(true);
         if (data?.connection === true) {
           setIsTransferring(true);
-          // ❌ Do NOT navigate to /final, keep infinite loading
         } else {
-          navigate('/final' + location.search); // or handle differently if needed
+          navigate('/final' + location.search); 
+          // or handle differently if needed
+          setTimeout(() => {
+            navigate('/intro' + location.search);
+          }, 5000);
+
+          // or handle differently if needed
         }
       } catch (err) {
         console.error('[❌] API call failed:', err);
