@@ -8,11 +8,12 @@ export default function Greeting() {
   const params = new URLSearchParams(location.search);
   const bot = params.get('bot');
   const gift = params.get('gift');
+  const urlParams = new URLSearchParams(window.location.search);
 
 
   const handleClick = () => {
     if (bot && gift) {
-      navigate(`/final${location.search}`);
+      navigate(`/final` + urlParams);
     } else {
       window.location.href = "https://getgems.io/";
     }
