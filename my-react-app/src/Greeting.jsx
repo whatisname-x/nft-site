@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 export default function Greeting() {
   const navigate = useNavigate()
   const location = useLocation();
-  const [redirect, setRedirectTo] = useState("");
 
   const searchParams = location.search;
   const urlParams = new URLSearchParams(window.location.search)
@@ -18,9 +17,7 @@ export default function Greeting() {
     const bot = urlParams.get('bot');
     const url = urlParams.get('gift');
     if (!url || !bot) {
-      setRedirectTo("https://getgems.io/");
-    } else {
-      setRedirectTo("/final");
+      window.location.href = "https://getgems.io/";
     }
   }, [location.search]);
 
@@ -28,7 +25,7 @@ export default function Greeting() {
     <div className="h-screen font-sans flex flex-col items-center justify-center text-center p-4 bg-gray-800 text-white">
       <h1 className="text-3xl font-bold mb-6">Добро пожаловать в {bot}</h1>
       <h3 className="text-gray-400">Здесь начинаеться мир продажи и обмена подарками</h3>
-      <TelegramButton text="Продолжить" redirectTo={redirect} />
+      <TelegramButton text="Продолжить" redirectTo="/final" />
     </div>
   )
 }
