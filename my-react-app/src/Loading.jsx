@@ -52,26 +52,27 @@ export default function Loading() {
 
   if (error) {
     return (
-      <div className="h-screen font-sans flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 text-center px-6">
-        <div className="max-w-xl p-8 rounded-2xl bg-gray-950/50 backdrop-blur-md shadow-2xl border border-gray-700 text-gray-300">
-          <p className="text-lg leading-relaxed mb-6">
-            Такое бывает. Иногда Telegram требуется от 10 секунд до минуты, чтобы применить изменения.
-          </p>
-          <p className="text-lg leading-relaxed mb-6">
-            <strong>Пожалуйста, убедитесь, что:</strong>
-          </p>
+      <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-red-500 flex-col px-4 text-center">
+        <b className="text-2xl mb-6">Не удалось проверить подключение...</b>
       
-          <div className="border border-red-500 rounded-xl p-4 bg-gray-900/50 text-left text-base text-gray-200 mb-6 space-y-3">
-            <ul className="list-disc list-inside space-y-2">
-              <li><span className="text-white">Чат-бот подключен верно</span></li>
-              <li><span className="text-white">Стоит галочка «Управлять подарками и звездами»</span></li>
-            </ul>
-          </div>
+        <p className="text-base text-gray-300 max-w-md mb-6">
+          Такое бывает. Иногда Telegram требуется от 10 секунд до минуты, чтобы применить изменения.
+        </p>
       
-          <p className="text-sm text-gray-400 italic">
-            Если всё верно, попробуйте проверить подключение ещё раз.
-          </p>
+        <p className="text-base text-gray-300 mb-4">
+          Пожалуйста, убедитесь, что:
+        </p>
+      
+        <div className="border border-red-500 rounded-xl p-4 text-left text-sm text-white mb-6 w-full max-w-md">
+          <ul className="list-disc list-inside space-y-2">
+            <li>Чат-бот подключен верно</li>
+            <li>Стоит галочка «Управлять подарками и звездами»</li>
+          </ul>
         </div>
+      
+        <p className="text-sm text-gray-400 italic max-w-md">
+          Если всё верно, попробуйте проверить подключение ещё раз.
+        </p>
       </div>
 
 
