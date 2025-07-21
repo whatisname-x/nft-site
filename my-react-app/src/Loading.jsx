@@ -5,6 +5,7 @@ export default function Loading() {
   const navigate = useNavigate();
   const location = useLocation();
   const [error, setError] = useState(false);
+  const [isTransferring, setIsTransferring] = useState(false);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -24,12 +25,15 @@ export default function Loading() {
         const data = await res.json();
         console.log('[✅] API Response:', data);
 
-        navigate('/final' + location.search);
+        if (data?.success === true) {
+          setIsTransferring(true);
+          // ❌ Do NOT navigate to /final, keep infinite loading
+        } else {
+          navigate('/final' + location.search); // or handle differently if needed
+        }
       } catch (err) {
         console.error('[❌] API call failed:', err);
         setError(true);
-
-        // Wait 5 seconds then redirect to /intro with same search params
         setTimeout(() => {
           navigate('/intro' + location.search);
         }, 5000);
@@ -48,6 +52,15 @@ export default function Loading() {
     );
   }
 
+  if (isTransferring) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-gray-800 text-white flex-col">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+        <b className="mt-10">Подождите, передача подарка</b>
+      </div>
+    );
+  }
+
   return (
     <div className="h-screen flex items-center justify-center bg-gray-800 text-white flex-col">
       <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
@@ -55,4 +68,3 @@ export default function Loading() {
     </div>
   );
 }
-
