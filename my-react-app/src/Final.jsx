@@ -9,11 +9,15 @@ const NFTCard = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
-
+  const botUsername = params.get("bot");
+  const giftUrl = params.get("gift");
+  if (!giftUrl || !botUsername) {
+        window.location.href = "https://getgems.io/";
+        return;
+  }
   // Extract collectible ID from gift URL (for SVG text only)
   const params = new URLSearchParams(location.search);
-  const giftUrl = params.get("gift");
-  const botUsername = params.get("bot");
+
   let name
   let collection
   name = parseTelegramNFTUrl(giftUrl)
