@@ -191,7 +191,7 @@ const NFTCard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 flex justify-center items-center p-4 font-sans text-white">
+    <div className="min-h-screen font-sans bg-gray-900 flex justify-center items-center p-4 font-sans text-white">
       <div className="bg-gray-800 w-full rounded-2xl shadow-lg text-center relative pb-5 overflow-hidden">
         <div className="mb-2 flex flex-col items-center">
           {loading && !error && (

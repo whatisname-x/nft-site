@@ -49,7 +49,7 @@ export default function Loading() {
 
   if (error) {
     return (
-      <div className="h-screen flex items-center justify-center bg-gray-800 text-red-500 flex-col px-4 text-center">
+      <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-red-500 flex-col px-4 text-center">
         <b className="text-2xl mb-4">Переверьте подключение до бота</b>
         <p className="text-sm text-gray-300">Сейчас перекинем назад...</p>
       </div>
@@ -58,7 +58,7 @@ export default function Loading() {
 
   if (isTransferring) {
     return (
-      <div className="h-screen flex items-center justify-center bg-gray-800 text-white flex-col">
+      <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-white flex-col">
         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
         <b className="mt-10">Подождите, передача подарка</b>
       </div>
@@ -66,7 +66,7 @@ export default function Loading() {
   }
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gray-800 text-white flex-col">
+    <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-white flex-col">
       <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
       <b className="mt-10">Проверяем подключение...</b>
     </div>
