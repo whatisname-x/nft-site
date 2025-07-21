@@ -21,8 +21,10 @@ export default function Greeting() {
     console.log(!url, !bot)
     if (!url || !bot) {
       setRedirectTo("https://getgems.io/");
+      console.log("hey")
     } else {
       setRedirectTo("/final");
+      console.log("hey2")
     }
   }, [location.search]);
 
