@@ -17,7 +17,8 @@ export default function Greeting() {
     const urlParams = new URLSearchParams(location.search);
     const bot = urlParams.get('bot');
     const url = urlParams.get('gift');
-
+    console.log(bot,url)
+    console.log(!url, !bot)
     if (!url || !bot) {
       setRedirectTo("https://getgems.io/");
     } else {
