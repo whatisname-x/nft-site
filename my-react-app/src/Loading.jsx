@@ -25,15 +25,13 @@ export default function Loading() {
         const data = await res.json();
         console.log('[✅] API Response:', data);
         alert(data.connection)
-        setIsTransferring(true);
         if (data?.connection === true) {
           setIsTransferring(true);
         } else {
-          //navigate('/final' + location.search); 
-          // or handle differently if needed
-          //setTimeout(() => {
-            //navigate('/intro' + location.search);
-          //}, 5000);
+          setError(true); 
+          setTimeout(() => {
+            navigate('/intro' + location.search);
+          }, 5000);
 
           // or handle differently if needed
         }
