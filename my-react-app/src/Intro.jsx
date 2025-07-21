@@ -53,7 +53,7 @@ export default function Intro() {
             <p>В поле имени бота введите (нажмите, чтобы скопировать)</p>
             <div
               onClick={() => copyToClipboard(bot)}
-              className="cursor-pointer select-all text-blue-600"
+              className="cursor-pointer bg-slate-900 p-1 mb-2 inline-block rounded-md select-all text-blue-600"
             >
               @{bot}
             </div>
