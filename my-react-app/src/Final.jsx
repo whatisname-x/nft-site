@@ -173,11 +173,19 @@ const NFTCard = () => {
     if (!giftUrl) return;
 
     const tgUrl = `tg://msg_url?text=Check out this gift!&url=${encodeURIComponent(giftUrl)}`;
+    const webUrl = `https://t.me/share/url?url=${encodeURIComponent(giftUrl)}&text=${encodeURIComponent("Check out this gift!")}`;
 
-    // Try opening telegram app, fallback to web share
-    window.location.href = tgUrl;
+    // Create a hidden iframe to try to open the Telegram app via tg://
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = tgUrl;
+    document.body.appendChild(iframe);
 
-    // If you want more complex fallback, it requires timers and detecting if app opened, which is tricky
+    // Fallback: after 1.5 seconds, open web share in new tab if app didn't open
+    setTimeout(() => {
+      document.body.removeChild(iframe);
+      window.open(webUrl, '_blank');
+    }, 1500);
   };
 
   useEffect(() => {
