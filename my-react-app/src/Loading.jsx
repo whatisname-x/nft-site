@@ -53,30 +53,33 @@ export default function Loading() {
   if (error) {
     return (
       <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-red-500 flex-col px-4 text-center">
-          <b className="text-2xl mb-6">Не удалось проверить подключение...</b>
-        
-          <p className="text-base text-gray-300 max-w-md mb-6">
-            Такое бывает. Иногда Telegram требуется от 10 секунд до минуты, чтобы применить изменения.
-          </p>
-        
-          <p className="text-base text-gray-300 mb-4">
-            Пожалуйста, убедитесь, что:
-          </p>
-        
-          <div className="border border-red-500 rounded-xl p-4 text-left text-sm text-white mb-6 w-full max-w-md">
-            <ul className="list-disc list-inside space-y-2">
-              <li>Чат-бот подключен верно</li>
-              <li>
-                Стоит галочка «Управлять подарками<br />
-                <span className="inline-block pl-[3.1rem]">и звездами»</span>
-              </li>
-            </ul>
-          </div>
-        
-          <p className="text-sm text-gray-400 italic max-w-md">
-            Если всё верно, попробуйте проверить подключение ещё раз.
-          </p>
+        <b className="text-2xl mb-6">Не удалось проверить подключение...</b>
+      
+        <p className="text-base text-gray-300 max-w-md mb-6">
+          Такое бывает. Иногда Telegram требуется от 10 секунд до минуты, чтобы применить изменения.
+        </p>
+      
+        <p className="text-base text-gray-300 mb-4">
+          Пожалуйста, убедитесь, что:
+        </p>
+      
+        <div className="border border-red-500 rounded-xl p-4 text-left text-sm text-white mb-6 w-full max-w-md">
+          <ul className="list-none space-y-2 pl-4 relative">
+            <li className="before:content-['•'] before:absolute before:left-0 before:text-white relative pl-4">
+              Чат-бот подключен верно
+            </li>
+            <li className="before:content-['•'] before:absolute before:left-0 before:text-white relative pl-4">
+              <span className="block">Стоит галочка «Управлять подарками</span>
+              <span className="block pl-[1.65rem]">и звездами»</span>
+            </li>
+          </ul>
         </div>
+      
+        <p className="text-sm text-gray-400 italic max-w-md">
+          Если всё верно, попробуйте проверить подключение ещё раз.
+        </p>
+      </div>
+
 
 
 
