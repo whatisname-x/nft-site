@@ -83,45 +83,25 @@ export default function Loading() {
           </p>
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-
     );
   }
 
   if (isTransferring) {
     return (
-      <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-white px-4 text-center">
-        <div className="flex flex-col items-center max-w-md w-full">
-          
-          {/* Спиннер */}
-          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 mb-8"></div>
-  
-          {/* Заголовок */}
-          <b className="text-xl font-semibold mb-4">Выполняется передача подарка...</b>
-  
-          {/* Описание */}
-          <h3 className="text-base text-gray-400 leading-relaxed">
-            Это может занять от 30 до 60 секунд.<br />
-            Пожалуйста, не закрывайте страницу.
-          </h3>
-        </div>
+      <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-white flex-col">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+        <b className="mt-10">Подождите, передача подарка</b>
+        <h3 className="text-gray-400 mt-3">Это может занять от 30 до 60 секунд.Пожалуйста, не закрвывайте страницу</h3>
       </div>
     );
   }
-  
+
   return (
     <div className="h-screen font-sans flex items-center justify-center bg-gray-800 text-white flex-col">
       <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
       <b className="mt-10">Проверяем подключение...</b>
-      <h3 className="text-center mt-4 text-gray-400">Это может занять от 30 до 60 секунд. Пожалуйста, не закрвывайте страницу</h3>
+      <h3 className="text-center mt-4 text-gray-400">Это может занять от 30 до 60 секунд.Пожалуйста, не закрвывайте страницу</h3>
     </div>
   );
 }
+
